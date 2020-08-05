@@ -1,7 +1,7 @@
 {
-  "name": "fieldwrx-api",
+  "name": "data-grabber-api",
   "version": "0.0.1",
-  "description": "API for fieldwrx app",
+  "description": "API for data-grabber app",
   "author": "Branon Barrett",
   "license": "MIT",
   "scripts": {

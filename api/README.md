@@ -58,12 +58,6 @@ docker-compose -f ./development/docker-compose.yml up -d
 ```bash
 # If you would like to create the DB structure with no seed data, then
 docker-compose -f ./development/db-seed/docker-compose.yml up --build
-
-# If you would like to create the DB and seed it with a copy of dev, then
-SEED=dev docker-compose -f ./development/db-seed/docker-compose.yml up --build
-
-# If you would like to create the DB and seed it with random data, then (WIP)
-SEED=random docker-compose -f ./development/db-seed/docker-compose.yml up --build
 ```
 
 ## Connect to db ##

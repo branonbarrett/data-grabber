@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, TileLayer, FeatureGroup, Circle } from 'react-leaflet';
+import { Map, TileLayer, FeatureGroup } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import './MainMap.css';
 
@@ -11,8 +11,8 @@ function MainMap() {
   return (
     <Map
       className="Map"
-      center={[51.505, -0.09]}
-      zoom={5}
+      center={[44.5588, -72.5778]}
+      zoom={8}
       onClick={handleClick}>
       <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -26,7 +26,6 @@ function MainMap() {
             polygon: false
           }}
         />
-        <Circle center={[51.51, -0.06]} radius={200} />
       </FeatureGroup>
     </Map>
   );

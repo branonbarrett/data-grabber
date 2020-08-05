@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  dbseed:
+    container_name: db_seed
+    build:
+      context: ../../
+      dockerfile: ./development/db-seed/Dockerfile
+    environment:
+        SEED: ${SEED}
+        DB_HOST: datagrabber_db
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
+        PGUSER: ${DB_USERNAME}
+        PGPASSWORD: ${DB_PASSWORD}
+    volumes:
+     - ./dumps:/tmp/dumps
+    external_links:
+      - datagrabber_db
+    networks:
+      - seed
+networks:
+  seed:
+    external: true
+    name: development

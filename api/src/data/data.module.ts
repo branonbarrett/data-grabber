@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataService } from './data.service';
-import { Windmill } from './windmill-model';
+import { Windmill } from './windmill.model';
 
 @Module({
   imports: [
