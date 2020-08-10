@@ -10,4 +10,4 @@ and in a separate terminal
 $ start_client.sh
 ```
 
-See the README files in the client and api projects for more detailed setup and start information.
+See the README files in the [client](./client/README.md) and [api](./api/README.md) projects for more detailed setup and start information.
