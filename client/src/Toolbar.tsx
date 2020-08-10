@@ -3,18 +3,20 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import LayersIcon from '@material-ui/icons/Layers';
+import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import Label from '@material-ui/core/InputLabel';
+import * as L from 'leaflet';
+import axios from 'axios';
+
+import { useContainerContext } from './ContainerContext';
+import { SelectTool } from './SelectTool';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,6 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ToolBar() {
   const classes = useStyles();
+  const context = useContainerContext();
+  const { map } = context.state;
 
   const [state, setState] = React.useState({
     open: false,
@@ -51,17 +55,34 @@ export default function ToolBar() {
     setState({ ...state, open: open });
   };
 
+  const addLayer = () => {
+    axios.get(`http://localhost:3001/layers/vt_plcwa`)
+      .then((res: any) => {
+        const layers = res.data;
+        var myStyle = {
+          "color": "#ff7800",
+          "weight": 5,
+          "opacity": 0.65
+        };
+        
+        L.geoJSON(layers as any, {
+            style: myStyle,
+            attribution: 'geoJson_data_layer'
+        }).addTo(map);
+      });
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="sticky">
         <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             Data Grabber
           </Typography>
-          {/* <Button color="inherit" onClick={toggleDrawer(true)}>Layers</Button> */}
+          <SelectTool />
+          <IconButton color="inherit" aria-label="layers" onClick={addLayer}>
+            <AddIcon />
+          </IconButton>
           <IconButton color="inherit" aria-label="layers" onClick={toggleDrawer(true)}>
             <LayersIcon />
           </IconButton>
