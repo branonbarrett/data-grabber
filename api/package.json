@@ -28,7 +28,7 @@
     "@nestjs/passport": "^5.1.0",
     "@nestjs/typeorm": "^5.2.2",
     "@nestjs/websockets": "^5.7.3",
-    "bcrypt": "^3.0.3",
+    "bcrypt": "^5.0.0",
     "braintree": "^2.15.0",
     "class-transformer": "^0.2.0",
     "class-validator": "^0.11.0",
